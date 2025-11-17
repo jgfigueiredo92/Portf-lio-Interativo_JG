@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currículo - João Gabriel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- html2pdf.js CDN is no longer strictly needed for in-app generation, but kept for potential future use -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    /* Variáveis CSS para temas */
+    :root {
+      --bg-color: #f5f7fa;
+      --text-color: #1e1e1e;
+      --header-color: #0d1b2a;
+      --nav-bg: #ffffff;
+      --nav-text: #0d1b2a;
+      --accent: #b19148;
+      --high-contrast-bg: #000000;
+      --high-contrast-text: #FFFF00; /* Amarelo vibrante */
+      --high-contrast-header: #000000;
+      --high-contrast-accent: #00FFFF; /* Ciano vibrante */
+      --high-contrast-nav-bg: #333333;
+      --high-contrast-nav-text: #FFFFFF;
+      --sidebar-width: 250px;
+    }
+    body.dark {
+      --bg-color: #0d1b2a;
+      --text-color: #e0e1dd;
+      --header-color: #1b263b;
+      --nav-bg: #1b263b;
+      --nav-text: #e0e1dd;
+      --accent: #b19148;
+    }
+
+    /* Estilos para Modo de Alto Contraste */
+    body.high-contrast {
+      --bg-color: var(--high-contrast-bg);
+      --text-color: var(--high-contrast-text);
+      --header-color: var(--high-contrast-header);
+      --nav-bg: var(--high-contrast-nav-bg);
+      --nav-text: var(--high-contrast-nav-text);
+      --accent: var(--high-contrast-accent);
+    }
+    body.high-contrast header {
+        background: var(--high-contrast-header);
+        color: var(--high-contrast-text);
+    }
+    body.high-contrast .profile-image {
+        border-color: var(--high-contrast-text);
+    }
+    body.high-contrast .menu-toggle-btn {
+        background-color: var(--high-contrast-nav-bg);
+        color: var(--high-contrast-nav-text);
+        border-color: var(--high-contrast-accent);
+    }
+    body.high-contrast .menu-toggle-btn:hover {
+        background-color: var(--high-contrast-accent);
+        color: var(--high-contrast-bg);
+    }
+    body.high-contrast .container {
+        background: var(--high-contrast-nav-bg);
+        box-shadow: 0 0 20px rgba(255,255,0,0.5); /* Sombra amarela para contraste */
+    }
+    body.high-contrast h1, body.high-contrast h2, body.high-contrast h3 {
+        color: var(--high-contrast-text);
+    }
+    body.high-contrast h2 {
+        border-bottom-color: var(--high-contrast-accent);
+    }
+    body.high-contrast .icon-link, body.high-contrast .contact-icon-link, body.high-contrast .competence-heading-icon {
+        color: var(--high-contrast-accent);
+    }
+    body.high-contrast .disability-info-visible {
+        background-color: var(--high-contrast-nav-bg);
+        border-color: var(--high-contrast-accent);
+        color: var(--high-contrast-text);
+    }
+    body.high-contrast .achievement-text {
+        background-color: var(--high-contrast-nav-bg);
+        border-color: var(--high-contrast-accent);
+        color: var(--high-contrast-text);
+    }
+    body.high-contrast .experience-block {
+        background-color: var(--high-contrast-nav-bg);
+        border-color: var(--high-contrast-accent);
+    }
+    body.high-contrast .experience-block h3 {
+        color: var(--high-contrast-text);
+    }
+    body.high-contrast .competence-category ul li::before {
+        color: var(--high-contrast-accent);
+    }
+    body.high-contrast .sidebar-menu {
+        background-color: var(--high-contrast-nav-bg);
+        border-right-color: var(--high-contrast-accent);
+    }
+    body.high-contrast .sidebar-menu button {
+        background-color: var(--high-contrast-nav-bg);
+        color: var(--high-contrast-nav-text);
+        border-color: var(--high-contrast-accent);
+    }
+    body.high-contrast .sidebar-menu button:hover {
+        background-color: var(--high-contrast-accent);
+        color: var(--high-contrast-bg);
+    }
+    body.high-contrast .close-menu-btn {
+        color: var(--high-contrast-nav-text);
+    }
+    body.high-contrast .close-menu-btn:hover {
+        color: var(--high-contrast-accent);
+    }
+    body.high-contrast #reading-controls {
+        background-color: var(--high-contrast-nav-bg);
+        border-color: var(--high-contrast-accent);
+    }
+    body.high-contrast #reading-controls button {
+        color: var(--high-contrast-nav-text);
+    }
+    body.high-contrast #reading-controls button:hover {
+        color: var(--high-contrast-accent);
+    }
+
+
+    /* Estilos base do corpo */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.4s, color 0.4s;
+      line-height: 1.5; /* Espaçamento de linha para o corpo do texto */
+      font-size: 16px; /* Tamanho base para ajuste */
+      overflow-x: hidden; /* Evita scroll horizontal ao abrir o menu */
+    }
+    body.text-large {
+        font-size: 18px;
+    }
+    body.text-xlarge {
+        font-size: 20px;
+    }
+
+
+    /* Estilos do cabeçalho */
+    header {
+      background: linear-gradient(120deg, var(--header-color), var(--accent));
+      color: white;
+      padding: 40px 20px 20px;
+      text-align: center;
+      position: relative; /* Alterado de sticky para relative para o menu toggle */
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .profile-image {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 10px;
+      display: block;
+      border: 4px solid #C0C0C0; /* Alterado para prateado */
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    /* Botão de Menu Hambúrguer */
+    .menu-toggle-btn {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        background-color: var(--nav-bg);
+        color: var(--nav-text);
+        border: 2px solid var(--accent);
+        padding: 8px 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        z-index: 1001; /* Acima do header */
+    }
+    .menu-toggle-btn:hover {
+        background-color: var(--accent);
+        color: white;
+    }
+    body.dark .menu-toggle-btn {
+        background-color: #1b263b;
+        color: #e0e1dd;
+        border-color: #b19148;
+    }
+    body.dark .menu-toggle-btn:hover {
+        background-color: #b19148;
+        color: white;
+    }
+
+    /* Sidebar Menu (Off-canvas) */
+    .sidebar-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-width);
+        height: 100%;
+        background-color: var(--nav-bg);
+        z-index: 2000; /* Acima de tudo */
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(calc(-1 * var(--sidebar-width))); /* Escondido por padrão */
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+        border-right: 1px solid var(--accent);
+    }
+    .sidebar-menu.sidebar-menu-visible {
+        transform: translateX(0); /* Visível */
+    }
+    .sidebar-menu .close-menu-btn {
+        background: none;
+        border: none;
+        color: var(--nav-text);
+        font-size: 1.8rem;
+        cursor: pointer;
+        align-self: flex-end; /* Alinhar à direita */
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+    }
+    .sidebar-menu .close-menu-btn:hover {
+        color: var(--accent);
+    }
+    .sidebar-menu .sidebar-nav-buttons,
+    .sidebar-menu .sidebar-accessibility-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .sidebar-menu .sidebar-nav-buttons button,
+    .sidebar-menu .sidebar-accessibility-controls button {
+        background-color: var(--nav-bg);
+        color: var(--nav-text);
+        border: 2px solid var(--accent);
+        padding: 10px 16px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        text-align: left; /* Alinhar texto à esquerda nos botões do menu */
+    }
+    .sidebar-menu .sidebar-nav-buttons button:hover,
+    .sidebar-menu .sidebar-accessibility-controls button:hover {
+        background-color: var(--accent);
+        color: white;
+    }
+    body.dark .sidebar-menu button {
+        background-color: #1b263b;
+        color: #e0e1dd;
+        border-color: #b19148;
+    }
+    body.dark .sidebar-menu button:hover {
+        background-color: #b19148;
+        color: white;
+    }
+
+    /* Overlay */
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1900; /* Abaixo do menu, acima do conteúdo */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+    #overlay.overlay-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Main Content Wrapper */
+    #main-content-wrapper {
+        transition: transform 0.3s ease-in-out;
+    }
+    #main-content-wrapper.shifted {
+        transform: translateX(var(--sidebar-width));
+    }
+
+
+    /* Estilos do container principal de conteúdo */
+    .container {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+    body.dark .container {
+      background: #1b263b;
+      box-shadow: 0 0 25px rgba(255,255,255,0.05);
+    }
+
+    /* Estilos dos títulos de secção */
+    h2 {
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 5px;
+      display: flex;
+      align-items: center;
+    }
+    h2 .icon-link {
+        color: var(--accent);
+        margin-left: 8px;
+        font-size: 0.8em;
+        transition: color 0.3s ease;
+    }
+    h2 .icon-link:hover {
+        color: var(--nav-text);
+        text-decoration: none;
+    }
+
+    /* Estilos das secções (ocultar/mostrar) */
+    section {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Estilos de lista */
+    ul {
+      padding-left: 20px;
+    }
+    ul li {
+        margin-bottom: 6pt; /* Espaçamento entre parágrafos para itens de lista */
+    }
+    p {
+        margin-bottom: 6pt; /* Espaçamento entre parágrafos */
+        text-indent: 1.25cm; /* Recuo de parágrafo */
+        text-align: justify; /* Alinhamento justificado para o corpo do texto */
+    }
+    p:first-child {
+        text-indent: 0; /* Remover recuo do primeiro parágrafo da secção se não for desejado */
+    }
+    /* Estilo específico para o subtítulo do cabeçalho */
+    .header-subtitle {
+        text-align: center;
+        text-indent: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--nav-text);
+      text-decoration: underline;
+    }
+
+    /* Estilos para a área de renderização temporária do PDF (mantido, mas não usado ativamente) */
+    #pdf-temp-render-area {
+        display: none; /* Esconder esta área, pois não será usada para a geração in-app */
+    }
+
+    /* Estilos para a informação de deficiência visível na UI */
+    .disability-info-visible {
+        background-color: #fffbeb; /* Light yellow for disability info */
+        border: 1px solid #fcd34d; /* Yellow border */
+        color: #92400e; /* Darker yellow text */
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        margin-top: 1.5rem; /* Space from contact info */
+        font-size: 0.95rem;
+        font-weight: 500;
+        display: flex; /* Use flex to align icon and text */
+        align-items: center;
+        gap: 0.5rem; /* Space between icon and text */
+    }
+    body.dark .disability-info-visible {
+        background-color: #4a5568;
+        border-color: #ecc94b;
+        color: #e2e8f0;
+    }
+    .disability-info-visible p {
+        margin: 0; /* Remove default paragraph margins */
+        text-indent: 0; /* Remove text indent for this specific paragraph */
+        text-align: left; /* Manter alinhamento à esquerda para esta info específica */
+    }
+    /* Estilo para links de ícones de contato */
+    .contact-icon-link {
+        color: var(--accent); /* Cor do ícone */
+        text-decoration: none; /* Sem sublinhado */
+        transition: color 0.3s ease;
+        margin-right: 5px; /* Espaço entre o ícone e o texto */
+    }
+    .contact-icon-link:hover {
+        color: var(--nav-text); /* Cor no hover */
+    }
+
+    /* Estilo para o texto de conquistas para remover recuo */
+    .achievement-text {
+        text-indent: 0 !important;
+        text-align: left !important;
+        font-style: italic; /* Opcional, para destacar conquistas */
+        margin-top: 10px;
+        margin-bottom: 6pt;
+    }
+    .achievement-text strong {
+        font-style: normal; /* Para o "Conquistas alcançadas:" não ficar em itálico */
+    }
+    .achievement-icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+    /* Estilo para os ícones nas sub-seções de competências */
+    .competence-heading-icon {
+        margin-right: 8px;
+        color: var(--accent);
+    }
+
+    /* Estilos para blocos de experiência */
+    .experience-block {
+        margin-bottom: 1.5rem; /* Espaçamento entre blocos de experiência */
+        border: 1px solid #eee;
+        padding: 1rem;
+        border-radius: 8px;
+        background-color: #fcfcfc;
+    }
+    .experience-block:last-child {
+        margin-bottom: 0;
+    }
+    .experience-block h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: #0d1b2a; /* Cor mais escura para o título do cargo */
+        text-indent: 0; /* Remover recuo para o título do cargo */
+        text-align: left; /* Alinhar à esquerda o título do cargo */
+    }
+    .experience-block p {
+        margin-bottom: 6pt;
+        text-indent: 1.25cm;
+        text-align: justify;
+    }
+    .experience-block p:first-of-type { /* Primeiro parágrafo dentro do bloco (geralmente título/período) */
+        text-indent: 0;
+        font-weight: bold;
+        text-align: left;
+    }
+    .experience-block p:nth-of-type(2) { /* Segundo parágrafo dentro do bloco (geralmente empresa) */
+        text-indent: 0;
+        text-align: left;
+    }
+    body.dark .experience-block {
+        background-color: #2a2a2a;
+        border-color: #444;
+    }
+    body.dark .experience-block h3 {
+        color: #e0e1dd;
+    }
+
+    /* Estilos para a seção de competências com listas */
+    .competence-category {
+        margin-bottom: 1.5rem;
+    }
+    .competence-category h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        text-indent: 0;
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+    .competence-category ul {
+        padding-left: 1.25cm; /* Recuo para a lista de competências */
+        list-style: none; /* Remover bullet padrão */
+    }
+    .competence-category ul li {
+        position: relative;
+        padding-left: 1.5rem; /* Espaço para o bullet customizado */
+        margin-bottom: 6pt;
+        text-align: justify;
+    }
+    .competence-category ul li::before {
+        content: '•'; /* Bullet customizado */
+        color: var(--accent); /* Cor do bullet */
+        font-size: 1.2em;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .container {
+            margin: 15px;
+            padding: 20px;
+        }
+        header {
+            padding: 30px 10px 15px;
+        }
+        h1 {
+            font-size: 2.2rem;
+        }
+        .header-subtitle {
+            font-size: 1rem;
+        }
+        nav {
+            gap: 8px;
+            margin-top: 15px;
+        }
+        nav button {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+        .theme-toggle {
+            right: 10px;
+            top: 10px;
+            padding: 6px 10px;
+            font-size: 0.8rem;
+        }
+        h2 {
+            font-size: 1.6rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+        }
+        p {
+            text-indent: 0.8cm; /* Ajustar recuo para telas menores */
+        }
+        ul {
+            padding-left: 15px;
+        }
+        .experience-block, .competence-category {
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .competence-category ul {
+            padding-left: 0.8cm;
+        }
+        .competence-category ul li {
+            padding-left: 1.2rem;
+        }
+        .disability-info-visible {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+        .disability-info-visible img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.8rem;
+        }
+        .header-subtitle {
+            font-size: 0.9rem;
+        }
+        nav button {
+            font-size: 0.8rem;
+            padding: 6px 10px;
+        }
+        h2 {
+            font-size: 1.4rem;
+        }
+        h3 {
+            font-size: 1rem;
+        }
+        p {
+            text-indent: 0.5cm; /* Mais ajuste para telas muito pequenas */
+        }
+        .contact-icon-link {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Estilos para os botões de acessibilidade */
+    .accessibility-controls {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        justify-content: center;
+    }
+    .accessibility-controls button {
+        background-color: var(--nav-bg);
+        color: var(--nav-text);
+        border: 2px solid var(--accent);
+        padding: 8px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 0.9rem;
+    }
+    .accessibility-controls button:hover {
+        background-color: var(--accent);
+        color: white;
+    }
+    body.dark .accessibility-controls button {
+        background-color: #1b263b;
+        color: #e0e1dd;
+        border-color: #b19148;
+    }
+    body.dark .accessibility-controls button:hover {
+        background-color: #b19148;
+        color: white;
+    }
+
+    /* Estilos para a barra de controlo de leitura */
+    #reading-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 15px; /* Ajuste para espaçamento */
+        margin-bottom: 15px; /* Espaço abaixo dos controlos */
+        padding: 10px 20px;
+        background-color: var(--nav-bg);
+        border: 2px solid var(--accent);
+        border-radius: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+    }
+    #reading-controls.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    #reading-controls button {
+        background: none;
+        border: none;
+        color: var(--nav-text);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: color 0.3s ease, transform 0.2s ease;
+    }
+    #reading-controls button:hover {
+        color: var(--accent);
+        transform: scale(1.1);
+    }
+    body.dark #reading-controls {
+        background-color: #1b263b;
+        border-color: #b19148;
+    }
+    body.dark #reading-controls button {
+        color: #e0e1dd;
+    }
+    body.dark #reading-controls button:hover {
+        color: #b19148;
+    }
+
+    /* Novo estilo para o botão de leitura no cabeçalho */
+    .header-speech-btn {
+        position: absolute;
+        right: 80px; /* Ajustado para dar espaço ao theme-toggle */
+        top: 20px;
+        background-color: var(--nav-bg);
+        color: var(--nav-text);
+        border: 2px solid var(--accent);
+        padding: 8px 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.2rem; /* Tamanho do ícone */
+        transition: all 0.3s ease;
+        z-index: 1001; /* Acima do header */
+    }
+    .header-speech-btn:hover {
+        background-color: var(--accent);
+        color: white;
+    }
+    body.dark .header-speech-btn {
+        background-color: #1b263b;
+        color: #e0e1dd;
+        border-color: #b19148;
+    }
+    body.dark .header-speech-btn:hover {
+        background-color: #b19148;
+        color: white;
+    }
+  </style>
+</head>
+<body class="dark"> <!-- Definido como modo escuro por padrão -->
+  <div id="main-content-wrapper"> <!-- Wrapper para o conteúdo principal que será deslocado -->
+    <header>
+      <button id="menu-toggle" class="menu-toggle-btn" aria-label="Abrir Menu"><i class="fas fa-bars"></i></button>
+      <!-- Botão de Leitura em Voz Alta no cabeçalho (apenas ícone) -->
+      <button onclick="toggleSpeech()" id="speechBtnHeader" class="header-speech-btn" title="Ouvir Texto"><i class="fas fa-volume-up"></i></button>
+      <img src="https://i.postimg.cc/sxmhVgDb/EU1-removebg-preview.png" alt="Foto de João Gabriel" class="profile-image">
+      <h1>João Gabriel da Silva Figueiredo</h1>
+      <p class="header-subtitle">Coordenador Pedagógico e Professor de Ciências Naturais e da Saúde</p>
+    </header>
+
+    <div class="container" id="cv-sections-container"> 
+      <section id="perfil" class="active">
+        <h2>Perfil</h2>
+        <p>Atuar como Coordenador Educacional, liderando equipes pedagógicas e promovendo inovações no ensino por meio de metodologias ativas, tecnologias educacionais e estratégias colaborativas.</p>
+        <p><strong>Contato:</strong><br>
+        <a href="mailto:jgfigueiredo92@gmail.com?subject=Contato&body=Ol%C3%A1%20Jo%C3%A3o%20Gabriel%2C%20tudo%20bem%20com%20voc%C3%AA%3F" target="_blank" class="contact-icon-link"><i class="fas fa-envelope"></i></a> jgfigueiredo92@gmail.com<br>
+        <a href="https://api.whatsapp.com/send?phone=5575992587144&text=Ol%C3%A1,%20Tudo%20bem?" target="_blank" class="contact-icon-link"><i class="fab fa-whatsapp"></i></a> (75) 99258-7144<br>
+        <a href="https://www.linkedin.com/in/jgf92/" target="_blank" class="contact-icon-link"><i class="fab fa-linkedin"></i></a> /in/jgf92<br>
+        <a href="https://instagram.com/prof_jgabriel" target="_blank" class="contact-icon-link"><i class="fab fa-instagram"></i></a> @prof_jgabriel<br>
+        <a href="https://github.com/jgfigueiredo92" target="_blank" class="contact-icon-link"><i class="fab fa-github"></i></a> /jgfigueiredo92</p>
+        
+        <div class="disability-info-visible">
+            <img src="https://i.postimg.cc/j2by1YWk/icone-deficiente-auditivo.png" alt="Ícone de deficiente auditivo" class="inline-block align-middle" style="width: 24px; height: 24px;">
+            <p class="inline-block m-0 p-0 text-base"><strong>Deficiência Auditiva:</strong> (CID H90.4: Perda auditiva unilateral neuro-sensorial, sem restrição de audição no ouvido oposto)</p>
+        </div>
+      </section>
+
+      <section id="formacao">
+        <h2>Formação Acadêmica</h2>
+        <ul>
+          <li>Mestrando em Modelagem e Simulação de Biossistemas - UNEB</li>
+          <li>Pós-graduação em Ecologia e Gestão Ambiental - FAVENI</li>
+          <li>Licenciatura em Ciências Biológicas - UNEB</li>
+        </ul>
+      </section>
+
+      <section id="experiencia">
+        <h2>Experiência Profissional</h2>
+        <ul>
+          <div class="experience-block">
+              <h3>COORDENADOR EDUCACIONAL - 02/2025 - Atual</h3>
+              <p>COLÉGIO JOÃO DE BARRO</p>
+              <p>Planejamento estratégico e acompanhamento de resultados pedagógicos.</p>
+              <p>Implementação de projetos interdisciplinares alinhados à BNCC.</p>
+              <p>Capacitação e orientação de equipes docentes para o aprimoramento das práticas educacionais.</p>
+              <p>Liderança de equipes docentes, implementação de metodologias ativas e inovação pedagógica.</p>
+              <p>Habilidade na mediação de conflitos, planejamento estratégico e capacitação docente.</p>
+              <p>Foco no desenvolvimento acadêmico e na excelência educacional.</p>
+          </div>
+          <div class="experience-block">
+              <h3>PROFESSOR UNIVERSITÁRIO - 10/2023 - Atual</h3>
+              <p>CENTRO UNIVERSITÁRIO UNIGRANDE</p>
+              <p>Elaboração e execução de planos de ensino alinhados ao PPP.</p>
+              <p>Utilização de recursos tecnológicos para o engajamento dos alunos.</p>
+              <p>Avaliação contínua do desempenho acadêmico.</p>
+              <p>Implementação de metodologias ativas em sala de aula.</p>
+              <p>Condução de projetos interdisciplinares para alunos do Ensino Superior.</p>
+              <p>Desenvolvimento de estratégias de ensino inclusivas e participativas.</p>
+              <p>Organização de atividades experimentais em laboratório.</p>
+              <p>Desenvolvimento de sequências didáticas baseadas na BNCC.</p>
+              <div class="achievement-text">
+                  <p><img src="https://i.postimg.cc/xjgnMHmm/icone-de-conquistas.png" alt="icone de conquistas" class="achievement-icon" style="width: 24px; height: 24px;"> <strong>Conquistas alcançadas:</strong></p>
+                  <p>Minha participação em mesas redondas e eventos de orientação sobre o uso de Inteligência Artificial na área da saúde foi uma experiência enriquecedora que reafirma meu compromisso com a inovação e a integração entre educação, ciência e tecnologia. Atuei como mediador e orientador em discussões voltadas à aplicação de ferramentas de IA no ensino e na prática da saúde, contribuindo para a formação crítica de estudantes e profissionais da área. Essa atuação reflete minha capacidade de dialogar com temas atuais, promover o pensamento científico e preparar educadores e discentes para os desafios e possibilidades da educação contemporânea.</p>
+              </div>
+          </div>
+          <div class="experience-block">
+              <h3>PROFESSOR DO ENSINO BÁSICO - 02/2022-03/2025</h3>
+              <p>COLÉGIO DESTAQUE</p>
+              <p>Elaboração e execução de planos de ensino alinhados ao PPP.</p>
+              <p>Utilização de recursos tecnológicos para o engajamento dos alunos.</p>
+              <p>Avaliação contínua do desempenho acadêmico.</p>
+              <p>Implementação de metodologias ativas em sala de aula.</p>
+              <p>Condução de projetos interdisciplinares para alunos do Ensino Fundamental II e Médio.</p>
+              <p>Desenvolvimento de estratégias de ensino inclusivas e participativas.</p>
+              <p>Organização de atividades experimentais em laboratório.</p>
+              <p>Desenvolvimento de sequências didáticas baseadas na BNCC.</p>
+              <div class="achievement-text">
+                  <p><img src="https://i.postimg.cc/xjgnMHmm/icone-de-conquistas.png" alt="icone de conquistas" class="achievement-icon" style="width: 24px; height: 24px;"> <strong>Conquistas alcançadas:</strong></p>
+                  <p>Entre os projetos mais significativos que coordenei no Ensino Médio, destaco a construção de um carrinho elétrico de madeira e de um forno solar, ambos idealizados a partir dos princípios das ODS. Esses projetos interdisciplinares uniram teoria e prática, desenvolveram habilidades socioemocionais, fortaleceram o protagonismo juvenil e mostraram como a ciência pode transformar realidades.</p>
+              </div>
+          </div>
+          <div class="experience-block">
+              <h3>PROFESSOR DO ENSINO BÁSICO - 05/2022 - 12/2024</h3>
+              <p>COLÉGIO ESTADUAL MARIA JOSÉ BASTOS</p>
+              <p>Elaboração e execução de planos de ensino alinhados ao PPP.</p>
+              <p>Utilização de recursos tecnológicos para o engajamento dos alunos.</p>
+              <p>Avaliação contínua do desempenho acadêmico.</p>
+              <p>Implementação de metodologias ativas em sala de aula.</p>
+              <p>Condução de projetos interdisciplinares para alunos do Ensino Fundamental II e Médio.</p>
+              <p>Desenvolvimento de estratégias de ensino inclusivas e participativas.</p>
+              <p>Organização de atividades experimentais em laboratório.</p>
+              <p>Desenvolvimento de sequências didáticas basedas na BNCC.</p>
+              <div class="achievement-text">
+                  <p><img src="https://i.postimg.cc/xjgnMHmm/icone-de-conquistas.png" alt="icone de conquistas" class="achievement-icon" style="width: 24px; height: 24px;"> <strong>Conquistas alcançadas:</strong></p>
+                  <p>No Ensino Fundamental II, conduzi com sucesso projetos de construção de circuitos elétricos (em série e paralelos) e de mapas ilustrativos dos sistemas do corpo humano. Essas experiências práticas aproximaram os alunos dos conceitos científicos de forma concreta e significativa, despertando o interesse pela ciência desde cedo.</p>
+              </div>
+          </div>
+          <div class="experience-block">
+              <h3>PROFESSOR DO ENSINO BÁSICO - 01/2019-07/2022</h3>
+              <p>COLÉGIO RENOVAÇÃO</p>
+              <p>Elaboração e execução de planos de ensino alinhados ao PPP.</p>
+              <p>Utilização de recursos tecnológicos para o engajamento dos alunos.</p>
+              <p>Avaliação contínua do desempenho acadêmico.</p>
+              <p>Implementação de metodologias ativas em sala de aula.</p>
+              <p>Condução de projetos interdisciplinares para alunos do Ensino Fundamental II e Médio.</p>
+              <p>Desenvolvimento de estratégias de ensino inclusivas e participativas.</p>
+              <p>Organização de atividades experimentais em laboratório.</p>
+              <p>Desenvolvimento de sequências didáticas baseadas na BNCC.</p>
+              <p>Aumento da taxa de aprovação em disciplinas de Ciências.</p>
+          </div>
+          <div class="experience-block">
+              <h3>PROFESSOR DO ENSINO BÁSICO - 04/2020 - 04/2022</h3>
+              <p>COLÉGIO ESTADUAL SÃO FRANCISCO</p>
+              <p>Elaboração e execução de planos de ensino alinhados ao PPP.</p>
+              <p>Utilização de recursos tecnológicos para o engajamento dos alunos.</p>
+              <p>Avaliação contínua do desempenho acadêmica.</p>
+              <p>Implementação de metodologias ativas em sala de aula.</p>
+              <p>Condução de projetos interdisciplinares para alunos do Ensino Fundamental II e Médio.</p>
+              <p>Desenvolvimento de estratégias de ensino inclusivas e participativas.</p>
+              <p>Organização de atividades experimentais em laboratório.</p>
+              <p>Desenvolvimento de sequências didáticas baseadas na BNCC.</p>
+              <p>Aumento da taxa de aprovação em disciplinas de Ciências.</p>
+          </div>
+          <div class="experience-block">
+              <h3>PROFESSOR DO ENSINO BÁSICO</h3> - 10/2018-03/2020</p>
+              <p>COLÉGIO DA POLÍCIA MILITAR DA BAHIA</p>
+              <p>Elaboração e execução de planos de ensino alinhados ao PPP.</p>
+              <p>Utilização de recursos tecnológicos para o engajamento dos alunos.</p>
+              <p>Avaliação contínua do desempenho acadêmico.</p>
+              <p>Implementação de metodologias ativas em sala de aula.</p>
+              <p>Condução de projetos interdisciplinares para alunos do Ensino Fundamental II e Médio.</p>
+              <p>Desenvolvimento de estratégias de ensino inclusivas e participativas.</p>
+              <p>Organização de atividades experimentais em laboratório.</p>
+              <p>Desenvolvimento de sequências didáticas baseadas na BNCC.</p>
+              <p>Aumento da taxa de aprovação em disciplinas de Ciências.</p>
+          </div>
+          <div class="experience-block">
+              <h3>Outras Experiências:</h3>
+              <p>Escola Técnica Esany (2017-2018)</p>
+              <p>Projeto Universidade para Todos (2014-2015)</p>
+          </div>
+        </ul>
+      </section>
+
+      <section id="competencias">
+        <h2>Competências e Diferenciais</h2>
+        <!-- Conteúdo de competências organizado por parágrafos com ícones -->
+        <div class="competence-category">
+            <p><i class="fas fa-chalkboard-teacher competence-heading-icon"></i><strong>Técnicas Pedagógicas:</strong></p>
+            <ul>
+                <li>Domínio da Base Nacional Comum Curricular (BNCC).</li>
+                <li>Planejamento e avaliação de aprendizagem.</li>
+                <li>Experiência com educação inclusiva e andragogia.</li>
+                <li>Promoção do engajamento e participação ativa dos alunos.</li>
+                <li>Consonância com os Objetivos do Desenvolvimento Sustentável (ODS).</li>
+            </ul>
+        </div>
+
+        <div class="competence-category">
+            <p><i class="fas fa-laptop-code competence-heading-icon"></i><strong>Tecnologias Educacionais:</strong></p>
+            <ul>
+                <li>Domínio de softwares educacionais.</li>
+                <li>Salas de aula inteligentes e ensino remoto.</li>
+                <li>Gamificação do ensino-aprendizagem.</li>
+            </ul>
+        </div>
+
+        <div class="competence-category">
+            <p><i class="fas fa-sitemap competence-heading-icon"></i><strong>Gestão Educacional:</strong></p>
+            <ul>
+                <li>Liderança em projetos interdisciplinares.</li>
+                <li>Coordenação pedagógica e orientação de alunos.</li>
+                <li>Conhecimento da Lei de Diretrizes e Bases da Educação (LDB).</li>
+                <li>Desenvolvimento de estratégias para melhorar o desempenho acadêmico.</li>
+                <li>Mediação de conflitos e promoção de um ambiente escolar positivo.</li>
+                <li>Habilidade na gestão de equipes e resolução de problemas.</li>
+                <li>Implementação de programas de formação continuada para docentes.</li>
+            </ul>
+        </div>
+      </section>
+
+      <section id="certificacoes">
+        <h2>Certificações
+          <a href="https://drive.google.com/drive/folders/1ECUZzhHJLIEr-ZhRYLCOBGjS1tdLkQ4y" target="_blank" title="Ver Certificados" class="icon-link">
+            <i class="fas fa-external-link-alt fa-sm"></i>
+          </a>
+        </h2>
+        <!-- Conteúdo de certificações organizado por parágrafos -->
+        <p>Neurociência, Neuropsicopedagogia e Distúrbios da Aprendizagem (360 horas)</p>
+        <p>Formação de Professores em Neuroeducação (200 horas)</p>
+        <p>Aperfeiçoamento em Educação e Tecnologia (180 horas)</p>
+        <p>Formação em Ciências da Natureza e suas Tecnologias (180 horas)</p>
+        <p>Metodologia do Ensino de Ciências da Natureza e Matemática (180 horas)</p>
+        <p>Aprendizagem Baseada em Problemas e Projetos (ABP) (120 horas)</p>
+        <p>Novas Tecnologias e Formação Docente (120 horas)</p>
+        <p>Gestão Escolar (80 horas)</p>
+      </section>
+
+      <section id="gerar-pdf-section">
+        <h2>Gerar PDF?</h2>
+        <p>Para gerar uma versão em PDF do seu currículo completo, por favor, utilize a funcionalidade de impressão do seu navegador.</p>
+        <p><strong>Instruções:</strong></p>
+        <ul>
+            <li>No Windows/Linux: Pressione `Ctrl + P`</li>
+            <li>No macOS: Pressione `Cmd + P`</li>
+            <li>Ou vá ao menu do seu navegador (geralmente os três pontos ou linhas no canto superior direito) e selecione "Imprimir...".</li>
+        </ul>
+        <p>Na janela de impressão, selecione "Guardar como PDF" (ou "Save as PDF", "Microsoft Print to PDF") como destino. Pode ajustar as margens e o layout conforme necessário antes de guardar.</p>
+      </section>
+      
+    </div>
+  </div> 
+
+  <!-- Sidebar Menu -->
+  <div id="sidebar-menu" class="sidebar-menu">
+    <button id="close-menu-btn" class="close-menu-btn" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
+    <div class="sidebar-nav-buttons">
+      <button onclick="showSectionFromSidebar('perfil')">Perfil</button>
+      <button onclick="showSectionFromSidebar('formacao')">Formação</button>
+      <button onclick="showSectionFromSidebar('experiencia')">Experiência</button>
+      <button onclick="showSectionFromSidebar('competencias')">Competências</button>
+      <button onclick="showSectionFromSidebar('certificacoes')">Certificações</button>
+      <button onclick="showSectionFromSidebar('gerar-pdf-section')">Gerar PDF?</button>
+      <button onclick="toggleSpeech()" id="speechBtnSidebar" title="Ouvir Texto"><i class="fas fa-volume-up"></i> Ouvir Texto</button>
+    </div>
+    <div class="sidebar-accessibility-controls">
+      <button onclick="toggleTheme()" id="themeToggleSidebar" title="Alternar Tema"><i class="fas fa-moon"></i> Modo Claro</button>
+      <button onclick="toggleHighContrast()" id="highContrastBtnSidebar" title="Alternar Alto Contraste"><i class="fas fa-adjust"></i> Alto Contraste</button>
+      <button onclick="adjustFontSize('increase')" id="increaseFontBtnSidebar" title="Aumentar Tamanho do Texto"><i class="fas fa-plus"></i> A+</button>
+      <button onclick="adjustFontSize('decrease')" id="decreaseFontBtnSidebar" title="Diminuir Tamanho do Texto"><i class="fas fa-minus"></i> A-</button>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Controles de Leitura em Voz Alta (movidos dinamicamente) -->
+  <div id="reading-controls" class="reading-controls-hidden">
+    <button id="playPauseBtn" title="Reproduzir/Pausar"><i class="fas fa-play"></i></button>
+    <button id="stopBtn" title="Parar"><i class="fas fa-stop"></i></button>
+  </div>
+
+  <script>
+    // Variável global para armazenar o ID da secção ativa
+    let currentActiveSectionId = 'perfil'; 
+    let currentFontSize = 16; // Tamanho de fonte base
+
+    // Variáveis para a funcionalidade de leitura em voz alta
+    let speechSynth = window.speechSynthesis;
+    let currentUtterance = null;
+    let isPaused = false;
+    let voicesLoaded = false; // Flag para controlar o carregamento das vozes
+
+    // Carregar vozes quando elas estiverem disponíveis
+    speechSynth.onvoiceschanged = () => {
+        voicesLoaded = true;
+        console.log("Vozes carregadas:", speechSynth.getVoices());
+    };
+
+    // Função para abrir/fechar o menu lateral
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar-menu');
+        const overlay = document.getElementById('overlay');
+        const mainContent = document.getElementById('main-content-wrapper');
+
+        sidebar.classList.toggle('sidebar-menu-visible');
+        overlay.classList.toggle('overlay-visible');
+        mainContent.classList.toggle('shifted');
+
+        // Parar a leitura quando o menu é toggled
+        stopReading();
+    }
+
+    // Função para mostrar a secção selecionada na UI principal
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+        sec.style.display = 'none'; 
+      });
+      const target = document.getElementById(id);
+      const targetH2 = target.querySelector('h2'); // Onde queremos inserir os controles
+      const readingControls = document.getElementById('reading-controls');
+
+      // Remover controles de onde quer que estejam
+      if (readingControls.parentNode) {
+          readingControls.parentNode.removeChild(readingControls);
+      }
+
+      // Inserir controles antes do H2 da nova seção ativa
+      if (targetH2) {
+          target.insertBefore(readingControls, targetH2);
+      } else {
+          // Fallback se não houver H2 (improvável para as suas seções)
+          target.prepend(readingControls);
+      }
+
+      target.style.display = 'block'; 
+      target.classList.add('active'); 
+      currentActiveSectionId = id; 
+      
+      // Parar qualquer leitura em andamento ao mudar de seção
+      stopReading();
+    }
+
+    // Nova função para lidar com cliques nos botões da sidebar
+    function showSectionFromSidebar(id) {
+        showSection(id); // Mostra a seção
+        toggleSidebar(); // Fecha a sidebar após a seleção
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const themeToggleBtn = document.getElementById('themeToggleSidebar');
+      themeToggleBtn.textContent = document.body.classList.contains('dark') ? 'Modo Claro' : 'Modo Escuro';
+    }
+
+    function toggleHighContrast() {
+        document.body.classList.toggle('high-contrast');
+    }
+
+    function adjustFontSize(direction) {
+        if (direction === 'increase') {
+            if (currentFontSize < 20) { // Limite máximo para evitar layout quebrado
+                currentFontSize += 2;
+            }
+        } else if (direction === 'decrease') {
+            if (currentFontSize > 12) { // Limite mínimo
+                currentFontSize -= 2;
+            }
+        }
+        document.body.style.fontSize = `${currentFontSize}px`;
+    }
+
+    // Funções para Leitura em Voz Alta
+    function startReading() {
+        // Parar qualquer leitura anterior
+        stopReading(); 
+
+        const activeSection = document.getElementById(currentActiveSectionId);
+        if (!activeSection) return;
+
+        // Extrair apenas o texto visível e relevante da seção
+        let textToRead = '';
+        activeSection.querySelectorAll('h2, h3, p, li').forEach(element => {
+            // Ignorar elementos de ícone ou links de certificados para leitura
+            if (!element.classList.contains('icon-link') && !element.classList.contains('achievement-icon')) {
+                textToRead += element.innerText + '. '; // Adicionar um ponto para melhor pausa
+            }
+        });
+
+        if (textToRead) {
+            currentUtterance = new SpeechSynthesisUtterance(textToRead);
+            
+            // Tentar definir a voz para português (Portugal ou Brasil)
+            const voices = speechSynth.getVoices();
+            const ptVoice = voices.find(voice => voice.lang === 'pt-PT' || voice.lang === 'pt-BR');
+            if (ptVoice) {
+                currentUtterance.voice = ptVoice;
+                console.log("Voz em português selecionada:", ptVoice.name);
+            } else {
+                console.warn("Voz em português não encontrada, usando voz padrão do sistema.");
+            }
+
+            currentUtterance.lang = 'pt-BR'; // Definir o idioma para a síntese
+            currentUtterance.rate = 1; // Velocidade da fala (1 é normal)
+            currentUtterance.pitch = 1; // Tonalidade da fala (1 é normal)
+
+            // Adicionar um listener para quando a fala terminar
+            currentUtterance.onend = () => {
+                console.log("Leitura concluída.");
+                updateReadingControls('stopped');
+            };
+            currentUtterance.onerror = (event) => {
+                console.error("Erro na síntese de voz:", event.error);
+                alert("Ocorreu um erro na leitura em voz alta. Por favor, tente novamente.");
+                updateReadingControls('stopped');
+            };
+
+            speechSynth.speak(currentUtterance);
+            isPaused = false;
+            updateReadingControls('playing');
+        } else {
+            console.log("Nenhum texto para ler na seção atual.");
+            alert("Não há texto disponível para leitura nesta seção.");
+        }
+    }
+
+    function pauseReading() {
+        if (speechSynth.speaking && !speechSynth.paused) {
+            speechSynth.pause();
+            isPaused = true;
+            updateReadingControls('paused');
+            console.log("Leitura pausada.");
+        }
+    }
+
+    function resumeReading() {
+        if (speechSynth.paused) {
+            speechSynth.resume();
+            isPaused = false;
+            updateReadingControls('playing');
+            console.log("Leitura retomada.");
+        }
+    }
+
+    function stopReading() {
+        if (speechSynth.speaking || speechSynth.paused) {
+            speechSynth.cancel();
+            console.log("Leitura parada.");
+        }
+        currentUtterance = null;
+        isPaused = false;
+        updateReadingControls('stopped');
+    }
+
+    function toggleSpeech() {
+        const controls = document.getElementById('reading-controls');
+        if (speechSynth.speaking && !isPaused) { // Se está a falar, pausa
+            pauseReading();
+        } else if (isPaused) { // Se está pausado, retoma
+            resumeReading();
+        } else { // Se não está a falar, começa
+            startReading();
+            controls.classList.remove('reading-controls-hidden');
+            controls.classList.add('visible'); // Usar a classe 'visible' existente
+        }
+    }
+
+    // Atualiza os ícones e estado dos botões de controlo de leitura
+    function updateReadingControls(state) {
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const speechBtnSidebar = document.getElementById('speechBtnSidebar'); // Botão na sidebar
+        const speechBtnHeader = document.getElementById('speechBtnHeader'); // Botão no cabeçalho
+        const controls = document.getElementById('reading-controls'); // Obter o div de controlos
+
+        if (state === 'playing') {
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            playPauseBtn.title = 'Pausar';
+            speechBtnSidebar.innerHTML = '<i class="fas fa-volume-up"></i> Ouvir Texto'; // Mantém o texto original
+            speechBtnHeader.innerHTML = '<i class="fas fa-pause"></i>'; // Altera o ícone do botão do cabeçalho para pausa
+            speechBtnHeader.title = 'Pausar Leitura';
+            controls.classList.remove('reading-controls-hidden');
+            controls.classList.add('visible');
+        } else if (state === 'paused') {
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            playPauseBtn.title = 'Reproduzir';
+            speechBtnSidebar.innerHTML = '<i class="fas fa-volume-up"></i> Ouvir Texto';
+            speechBtnHeader.innerHTML = '<i class="fas fa-play"></i>'; // Altera o ícone do botão do cabeçalho para play
+            speechBtnHeader.title = 'Retomar Leitura';
+            controls.classList.remove('reading-controls-hidden');
+            controls.classList.add('visible');
+        } else if (state === 'stopped') {
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            playPauseBtn.title = 'Reproduzir';
+            speechBtnSidebar.innerHTML = '<i class="fas fa-volume-up"></i> Ouvir Texto';
+            speechBtnHeader.innerHTML = '<i class="fas fa-volume-up"></i>'; // Volta ao ícone de volume original
+            speechBtnHeader.title = 'Ouvir Texto';
+            controls.classList.remove('visible'); // Esconder controlos
+            controls.classList.add('reading-controls-hidden');
+        }
+    }
+
+    // Event listeners para os botões de controlo de leitura
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggleBtn = document.getElementById('menu-toggle');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const overlay = document.getElementById('overlay');
+        const sidebarNavButtons = document.querySelectorAll('.sidebar-nav-buttons button');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const speechBtnSidebar = document.getElementById('speechBtnSidebar'); // Botão na sidebar
+        const speechBtnHeader = document.getElementById('speechBtnHeader'); // Botão no cabeçalho
+
+        // Event listeners para o menu lateral
+        if (menuToggleBtn) menuToggleBtn.addEventListener('click', toggleSidebar);
+        if (closeMenuBtn) closeMenuBtn.addEventListener('click', toggleSidebar);
+        if (overlay) overlay.addEventListener('click', toggleSidebar);
+
+        // Fechar sidebar ao clicar num botão de seção
+        sidebarNavButtons.forEach(button => {
+            // Ação de clique para os botões de navegação na sidebar
+            button.addEventListener('click', (event) => {
+                // Previne a ação padrão do botão se houver (embora não seja um link)
+                event.preventDefault(); 
+                // Extrai o ID da seção do atributo onclick
+                const sectionIdMatch = event.currentTarget.onclick.toString().match(/'([^']+)'/);
+                if (sectionIdMatch && sectionIdMatch[1]) {
+                    showSectionFromSidebar(sectionIdMatch[1]); // Chama a nova função
+                }
+            });
+        });
+
+        // Event listeners para os botões de controlo de leitura
+        if (playPauseBtn) playPauseBtn.addEventListener('click', () => {
+            if (isPaused) {
+                resumeReading();
+            } else {
+                pauseReading();
+            }
+        });
+        if (stopBtn) stopBtn.addEventListener('click', stopReading);
+
+        // O botão speechBtnHeader agora é o principal para iniciar/parar a leitura
+        if (speechBtnHeader) speechBtnHeader.addEventListener('click', toggleSpeech);
+        // O speechBtnSidebar (no menu lateral) também aciona a mesma função
+        if (speechBtnSidebar) speechBtnSidebar.addEventListener('click', toggleSpeech);
+
+
+        // Garantir que os controlos de leitura estão ocultos no início
+        document.getElementById('reading-controls').classList.add('reading-controls-hidden');
+
+        // Chamar showSection para a seção padrão (sem toggleSidebar aqui)
+        showSection('perfil');
+
+        // Inicializar texto do botão de tema na sidebar
+        const themeToggleSidebar = document.getElementById('themeToggleSidebar');
+        if (themeToggleSidebar) {
+            themeToggleSidebar.textContent = document.body.classList.contains('dark') ? 'Modo Claro' : 'Modo Escuro';
+        }
+    });
+  </script>
+</body>
+</html>
