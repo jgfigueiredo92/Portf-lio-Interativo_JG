@@ -6,7 +6,6 @@
   <title>Currículo - João Gabriel</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- html2pdf.js CDN is no longer strictly needed for in-app generation, but kept for potential future use -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     /* Variáveis CSS para temas */
@@ -697,11 +696,8 @@
     }
   </style>
 </head>
-<body class="dark"> <!-- Definido como modo escuro por padrão -->
-  <div id="main-content-wrapper"> <!-- Wrapper para o conteúdo principal que será deslocado -->
-    <header>
+<body class="dark"> <div id="main-content-wrapper"> <header>
       <button id="menu-toggle" class="menu-toggle-btn" aria-label="Abrir Menu"><i class="fas fa-bars"></i></button>
-      <!-- Botão de Leitura em Voz Alta no cabeçalho (apenas ícone) -->
       <button onclick="toggleSpeech()" id="speechBtnHeader" class="header-speech-btn" title="Ouvir Texto"><i class="fas fa-volume-up"></i></button>
       <img src="https://i.postimg.cc/sxmhVgDb/EU1-removebg-preview.png" alt="Foto de João Gabriel" class="profile-image">
       <h1>João Gabriel da Silva Figueiredo</h1>
@@ -776,7 +772,7 @@
               <p>Desenvolvimento de sequências didáticas baseadas na BNCC.</p>
               <div class="achievement-text">
                   <p><img src="https://i.postimg.cc/xjgnMHmm/icone-de-conquistas.png" alt="icone de conquistas" class="achievement-icon" style="width: 24px; height: 24px;"> <strong>Conquistas alcançadas:</strong></p>
-                  <p>Entre os projetos mais significativos que coordenei no Ensino Médio, destaco a construção de um carrinho elétrico de madeira e de um forno solar, ambos idealizados a partir dos princípios das ODS. Esses projetos interdisciplinares uniram teoria e prática, desenvolveram habilidades socioemocionais, fortaleceram o protagonismo juvenil e mostraram como a ciência pode transformar realidades.</p>
+                  <p>Entre os projetos mais significativos que coordenei no Ensino Médio, destaco a construção de um carrinho elétrico de madeira e de um forno solar, ambos idealizados a partir dos princípios dos ODS. Esses projetos interdisciplinares uniram teoria e prática, desenvolveram habilidades socioemocionais, fortaleceram o protagonismo juvenil e mostraram como a ciência pode transformar realidades.</p>
               </div>
           </div>
           <div class="experience-block">
@@ -822,7 +818,7 @@
               <p>Aumento da taxa de aprovação em disciplinas de Ciências.</p>
           </div>
           <div class="experience-block">
-              <h3>PROFESSOR DO ENSINO BÁSICO</h3> - 10/2018-03/2020</p>
+              <h3>PROFESSOR DO ENSINO BÁSICO - 10/2018-03/2020</h3>
               <p>COLÉGIO DA POLÍCIA MILITAR DA BAHIA</p>
               <p>Elaboração e execução de planos de ensino alinhados ao PPP.</p>
               <p>Utilização de recursos tecnológicos para o engajamento dos alunos.</p>
@@ -844,7 +840,6 @@
 
       <section id="competencias">
         <h2>Competências e Diferenciais</h2>
-        <!-- Conteúdo de competências organizado por parágrafos com ícones -->
         <div class="competence-category">
             <p><i class="fas fa-chalkboard-teacher competence-heading-icon"></i><strong>Técnicas Pedagógicas:</strong></p>
             <ul>
@@ -885,7 +880,6 @@
             <i class="fas fa-external-link-alt fa-sm"></i>
           </a>
         </h2>
-        <!-- Conteúdo de certificações organizado por parágrafos -->
         <p>Neurociência, Neuropsicopedagogia e Distúrbios da Aprendizagem (360 horas)</p>
         <p>Formação de Professores em Neuroeducação (200 horas)</p>
         <p>Aperfeiçoamento em Educação e Tecnologia (180 horas)</p>
@@ -894,6 +888,19 @@
         <p>Aprendizagem Baseada em Problemas e Projetos (ABP) (120 horas)</p>
         <p>Novas Tecnologias e Formação Docente (120 horas)</p>
         <p>Gestão Escolar (80 horas)</p>
+      </section>
+
+      <section id="resumo">
+        <h2>Resumo Profissional</h2>
+        <p>Com 13 anos de experiência em sala de aula e gestão, do Ensino Fundamental ao Superior, atuo na intersecção entre Educação, Liderança e Ciência de Dados. Minha trajetória não é linear; ela evoluiu de Professor de Ciências da Natureza e da Saúde para uma atuação estratégica como Coordenador Pedagógico, onde foco não apenas no conteúdo, mas na performance e no desenvolvimento do corpo docente. Atualmente, como Mestrando em Modelagem e Simulação de Biossistemas (UNEB), trago um diferencial raro para a gestão escolar: a capacidade de analisar dados complexos para tomar decisões pedagógicas mais assertivas.</p>
+        <p>🚀 <strong>Destaques da minha atuação:</strong></p>
+        <ul>
+          <li><strong>👨🏻‍💼 Liderança Pedagógica:</strong> Coordeno equipes focadas em metodologias ativas e inovação, alinhando o currículo aos ODS (Objetivos de Desenvolvimento Sustentável).</li>
+          <li><strong>📊 Gestão Baseada em Evidências:</strong> Utilizo minha formação em Modelagem e Estatística para otimizar processos de ensino-aprendizagem.</li>
+          <li><strong>👨🏻‍💻 Tecnologia Educacional:</strong> Implementação de ferramentas digitais que aumentam o engajamento dos alunos e facilitam a vida dos professores.</li>
+        </ul>
+        <p>💡 <strong>Competências-Chave:</strong> Gestão Educacional • Ciência de Dados (Python/Machine Learning) • Formação de Professores • Educação & Sustentabilidade.</p>
+        <p>Estou sempre em busca de conectar inovação tecnológica com a humanização do ensino.</p>
       </section>
 
       <section id="gerar-pdf-section">
@@ -911,7 +918,6 @@
     </div>
   </div> 
 
-  <!-- Sidebar Menu -->
   <div id="sidebar-menu" class="sidebar-menu">
     <button id="close-menu-btn" class="close-menu-btn" aria-label="Fechar Menu"><i class="fas fa-times"></i></button>
     <div class="sidebar-nav-buttons">
@@ -920,6 +926,7 @@
       <button onclick="showSectionFromSidebar('experiencia')">Experiência</button>
       <button onclick="showSectionFromSidebar('competencias')">Competências</button>
       <button onclick="showSectionFromSidebar('certificacoes')">Certificações</button>
+      <button onclick="showSectionFromSidebar('resumo')">Resumo Profissional</button>
       <button onclick="showSectionFromSidebar('gerar-pdf-section')">Gerar PDF?</button>
       <button onclick="toggleSpeech()" id="speechBtnSidebar" title="Ouvir Texto"><i class="fas fa-volume-up"></i> Ouvir Texto</button>
     </div>
@@ -931,10 +938,8 @@
     </div>
   </div>
 
-  <!-- Overlay -->
   <div id="overlay" class="overlay"></div>
 
-  <!-- Controles de Leitura em Voz Alta (movidos dinamicamente) -->
   <div id="reading-controls" class="reading-controls-hidden">
     <button id="playPauseBtn" title="Reproduzir/Pausar"><i class="fas fa-play"></i></button>
     <button id="stopBtn" title="Parar"><i class="fas fa-stop"></i></button>
